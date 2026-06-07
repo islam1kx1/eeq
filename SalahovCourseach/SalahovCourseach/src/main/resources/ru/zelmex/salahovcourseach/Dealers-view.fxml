@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="675.0" prefWidth="1200.0" stylesheets="@../../../base-styles.css" xmlns="http://javafx.com/javafx/17.0.12" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ru.zelmex.salahovcourseach.controller.Dealers.DealersController">
+    <children>
+        <SplitPane dividerPositions="0.4463087248322148" layoutX="228.0" layoutY="50.0" orientation="VERTICAL" prefHeight="300.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <AnchorPane maxHeight="-Infinity" prefHeight="150.0" prefWidth="200.0">
+                    <children>
+                        <VBox prefHeight="200.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <children>
+                                <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Button fx:id="motorcyclesButton" contentDisplay="CENTER" mnemonicParsing="false"
+                                                onAction="#onClickMotorcycles" text="Модельные линейки" textAlignment="CENTER">
+                                            <HBox.margin>
+                                                <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button fx:id="brandsButton" contentDisplay="CENTER" mnemonicParsing="false"
+                                                onAction="#onClickDealers" text="Дилеры" textAlignment="CENTER">
+                                            <HBox.margin>
+                                                <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button fx:id="typesButton" contentDisplay="CENTER" mnemonicParsing="false"
+                                                onAction="#onClickShipments" text="Отгрузки" textAlignment="CENTER">
+                                            <HBox.margin>
+                                                <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button fx:id="offButton" mnemonicParsing="false" onAction="#powerOff" style="-fx-background-color: transparent;" textAlignment="CENTER">
+                                            <graphic>
+                                                <ImageView>
+                                                    <Image url="@off.png" />
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                    </children>
+                                </HBox>
+
+                                <HBox prefHeight="100.0" prefWidth="200.0">
+                                    <children>
+                                        <Button mnemonicParsing="false" onAction="#btnAddDealers" style="-fx-background-color: transparent;">
+                                            <graphic>
+                                                <ImageView fitHeight="50.0" fitWidth="50.0">
+                                                    <Image url="@add.png" />
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button mnemonicParsing="false" onAction="#btnEditDealers" style="-fx-background-color: transparent;">
+                                            <graphic>
+                                                <ImageView fitHeight="50.0" fitWidth="50.0">
+                                                    <Image url="@edit.png" />
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button mnemonicParsing="false" onAction="#btnDeleteDealers" style="-fx-background-color: transparent;">
+                                            <graphic>
+                                                <ImageView fitHeight="50.0" fitWidth="50.0">
+                                                    <Image url="@delete.png" />
+                                                </ImageView>
+                                            </graphic>
+                                            <HBox.margin>
+                                                <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+                                            </HBox.margin>
+                                        </Button>
+                                        <Button mnemonicParsing="false" onAction="#btnUpdateDealers" style="-fx-background-color: transparent;">
+                                            <HBox.margin>
+                                                <Insets bottom="20.0" left="10.0" right="10.0" top="20.0" />
+                                            </HBox.margin>
+                                            <graphic>
+                                                <ImageView fitHeight="50.0" fitWidth="50.0">
+                                                    <Image url="@update.png" />
+                                                </ImageView>
+                                            </graphic>
+                                        </Button>
+                                    </children>
+                                </HBox>
+                            </children>
+                        </VBox>
+                    </children>
+                </AnchorPane>
+                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                    <children>
+                        <TableView fx:id="dealersTable" layoutX="127.0" layoutY="-37.0" prefHeight="163.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <columns>
+                                <TableColumn fx:id="dealerIdColumn" prefWidth="50.0" text="ID" />
+                                <TableColumn fx:id="nameColumn" prefWidth="200.0" text="Название" />
+                                <TableColumn fx:id="regionColumn" prefWidth="150.0" text="Регион" />
+                                <TableColumn fx:id="phoneColumn" prefWidth="150.0" text="Телефон" />
+                                <TableColumn fx:id="contactPersonColumn" prefWidth="200.0" text="Контактное лицо" />
+                            </columns>
+                            <columnResizePolicy>
+                                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+                            </columnResizePolicy>
+                        </TableView>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>
