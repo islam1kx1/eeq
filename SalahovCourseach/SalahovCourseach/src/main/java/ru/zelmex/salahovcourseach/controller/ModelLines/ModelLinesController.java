@@ -21,7 +21,6 @@ public class ModelLinesController {
     private List<ModelLines> modelLinesList;
 
     @FXML private TableView<ModelLinesTableItem> clientsTable;
-    @FXML private TableColumn<ModelLinesTableItem, Integer> modelIdColumn;
     @FXML private TableColumn<ModelLinesTableItem, String> nameColumn;
     @FXML private TableColumn<ModelLinesTableItem, String> typeColumn;
     @FXML private TableColumn<ModelLinesTableItem, String> specificationsColumn;
@@ -144,7 +143,6 @@ public class ModelLinesController {
     }
 
     public void initialize() {
-        modelIdColumn.setCellValueFactory(new PropertyValueFactory<>("modelId"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         typeColumn.setCellValueFactory(new PropertyValueFactory<>("type"));
         specificationsColumn.setCellValueFactory(new PropertyValueFactory<>("specifications"));

@@ -98,7 +98,6 @@
                     <children>
                         <TableView fx:id="clientsTable" layoutX="127.0" layoutY="-37.0" prefHeight="163.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columns>
-                                <TableColumn fx:id="modelIdColumn" prefWidth="50.0" text="ID" />
                                 <TableColumn fx:id="nameColumn" prefWidth="200.0" text="Название модели" />
                                 <TableColumn fx:id="typeColumn" prefWidth="120.0" text="Тип" />
                                 <TableColumn fx:id="specificationsColumn" prefWidth="300.0" text="Характеристики" />

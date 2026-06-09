@@ -96,11 +96,11 @@
                 </AnchorPane>
                 <AnchorPane prefHeight="200.0" prefWidth="200.0">
                     <children>
-                        <TableView fx:id="shipmentsTable" layoutX="127.0" layoutY="-37.0" prefHeight="163.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <TableView fx:id="shipmentsTable" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0"
+                                   AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <columns>
-                                <TableColumn fx:id="shipmentIdColumn" prefWidth="50.0" text="ID" />
-                                <TableColumn fx:id="modelIdColumn" prefWidth="100.0" text="ID Модели" />
-                                <TableColumn fx:id="dealerIdColumn" prefWidth="100.0" text="ID Дилера" />
+                                <TableColumn fx:id="modelColumn" prefWidth="200.0" text="Модель" />
+                                <TableColumn fx:id="dealerColumn" prefWidth="200.0" text="Дилер" />
                                 <TableColumn fx:id="quantityColumn" prefWidth="100.0" text="Количество" />
                                 <TableColumn fx:id="dateColumn" prefWidth="120.0" text="Дата" />
                             </columns>

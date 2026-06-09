@@ -18,20 +18,13 @@ import java.util.List;
 import java.util.Optional;
 
 public class ShipmentsController {
-    private List<Shipments> shipments;
     private ObservableList<ShipmentsTableItem> shipmentsObservable;
 
     @FXML private TableView<ShipmentsTableItem> shipmentsTable;
-    @FXML private TableColumn<ShipmentsTableItem, Integer> shipmentIdColumn;
-    @FXML private TableColumn<ShipmentsTableItem, Integer> modelIdColumn;
-    @FXML private TableColumn<ShipmentsTableItem, Integer> dealerIdColumn;
+    @FXML private TableColumn<ShipmentsTableItem, String> modelColumn;
+    @FXML private TableColumn<ShipmentsTableItem, String> dealerColumn;
     @FXML private TableColumn<ShipmentsTableItem, Integer> quantityColumn;
     @FXML private TableColumn<ShipmentsTableItem, String> dateColumn;
-
-    @FXML private Button btnModelLines;
-    @FXML private Button btnDealers;
-    @FXML private Button btnShipments;
-    @FXML private Button offButton;
 
     private void openShipmentDialog(boolean isEdit, Shipments shipment) {
         try {
@@ -70,16 +63,15 @@ public class ShipmentsController {
     @FXML
     void deleteShipment(ActionEvent event) {
         ShipmentsTableItem currentItem = shipmentsTable.getSelectionModel().getSelectedItem();
-        int currentItemId = shipmentsTable.getSelectionModel().getSelectedIndex();
-        if (currentItemId != -1) {
+        if (currentItem != null) {
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Подтверждение удаления");
             alert.setHeaderText("Удаление записи");
-            alert.setContentText("Вы действительно хотите удалить поставку #" + currentItem.getShipmentId() + "?");
+            alert.setContentText("Вы действительно хотите удалить поставку \"" + currentItem.getModelName() + " -> " + currentItem.getDealerName() + "\"?");
             Optional<ButtonType> result = alert.showAndWait();
             if (result.isPresent() && result.get() == ButtonType.OK) {
-                new ShipmentsService().delete(currentItem.getShipment());
-                shipmentsTable.getItems().remove(currentItemId);
+                new ShipmentsService().deleteById((long) currentItem.getShipmentId());
+                shipmentsTable.getItems().remove(currentItem);
             }
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -112,9 +104,10 @@ public class ShipmentsController {
     @FXML
     void updateShipments(ActionEvent event) {
         ShipmentsTableItem selectedItem = shipmentsTable.getSelectionModel().getSelectedItem();
-        int selectedIndex = shipmentsTable.getSelectionModel().getSelectedIndex();
-        if (selectedIndex != -1 && selectedItem != null) {
-            openShipmentDialog(true, selectedItem.getShipment());
+        if (selectedItem != null) {
+            // Нужно получить объект Shipments по ID
+            Shipments shipment = new ShipmentsService().findOne(selectedItem.getShipmentId());
+            openShipmentDialog(true, shipment);
         } else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Предупреждение");
@@ -125,11 +118,15 @@ public class ShipmentsController {
 
     public void updateList() {
         try {
-            shipments = new ShipmentsService().findAll();
+            List<Object[]> results = new ShipmentsService().findAllWithNames();
+            if (shipmentsObservable == null) {
+                shipmentsObservable = FXCollections.observableArrayList();
+                shipmentsTable.setItems(shipmentsObservable);
+            }
             shipmentsObservable.clear();
-            if (shipments != null) {
-                for (Shipments shipment : shipments) {
-                    shipmentsObservable.add(new ShipmentsTableItem(shipment));
+            if (results != null) {
+                for (Object[] row : results) {
+                    shipmentsObservable.add(new ShipmentsTableItem(row));
                 }
             }
             shipmentsTable.refresh();
@@ -140,9 +137,8 @@ public class ShipmentsController {
     }
 
     public void initialize() {
-        shipmentIdColumn.setCellValueFactory(new PropertyValueFactory<>("shipmentId"));
-        modelIdColumn.setCellValueFactory(new PropertyValueFactory<>("modelId"));
-        dealerIdColumn.setCellValueFactory(new PropertyValueFactory<>("dealerId"));
+        modelColumn.setCellValueFactory(new PropertyValueFactory<>("modelName"));
+        dealerColumn.setCellValueFactory(new PropertyValueFactory<>("dealerName"));
         quantityColumn.setCellValueFactory(new PropertyValueFactory<>("quantity"));
         dateColumn.setCellValueFactory(new PropertyValueFactory<>("date"));
 

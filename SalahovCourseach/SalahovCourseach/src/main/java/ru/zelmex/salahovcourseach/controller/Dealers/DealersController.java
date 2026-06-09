@@ -35,8 +35,6 @@ public class DealersController {
 
     // ========== МЕТОДЫ ДЛЯ КНОПОК НАВИГАЦИИ (ИЗ FXML) ==========
 
-    @FXML private TableColumn<DealersTableItem, Integer> dealerIdColumn;
-
     @FXML
     void onClickMotorcycles(ActionEvent event) {
         motorcycleCompany.primaryStage.setScene(motorcycleCompany.modelLines);
@@ -154,7 +152,6 @@ public class DealersController {
     }
 
     public void initialize() {
-        dealerIdColumn.setCellValueFactory(new PropertyValueFactory<>("dealerId"));
         nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
         regionColumn.setCellValueFactory(new PropertyValueFactory<>("region"));
         phoneColumn.setCellValueFactory(new PropertyValueFactory<>("phone"));
