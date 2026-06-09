@@ -1,0 +1,111 @@
+-- DROP SCHEMA public;
+
+CREATE SCHEMA public AUTHORIZATION postgres;
+
+-- DROP SEQUENCE public."Dealers_dealerid_seq";
+
+CREATE SEQUENCE public."Dealers_dealerid_seq"
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE public."ModelLines_modelid_seq";
+
+CREATE SEQUENCE public."ModelLines_modelid_seq"
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START 1
+	CACHE 1
+	NO CYCLE;
+-- DROP SEQUENCE public."Shipments_shipmentid_seq";
+
+CREATE SEQUENCE public."Shipments_shipmentid_seq"
+	INCREMENT BY 1
+	MINVALUE 1
+	MAXVALUE 2147483647
+	START 1
+	CACHE 1
+	NO CYCLE;-- public."Dealers" определение
+
+-- Drop table
+
+-- DROP TABLE public."Dealers";
+
+CREATE TABLE public."Dealers" (
+	dealerid serial4 NOT NULL,
+	"name" varchar(255) NULL,
+	region varchar(255) NULL,
+	phone varchar(255) NULL,
+	contactperson varchar(255) NULL,
+	CONSTRAINT "Dealers_pkey" PRIMARY KEY (dealerid)
+);
+
+
+-- public."ModelLines" определение
+
+-- Drop table
+
+-- DROP TABLE public."ModelLines";
+
+CREATE TABLE public."ModelLines" (
+	modelid serial4 NOT NULL,
+	"name" varchar(255) NULL,
+	"type" varchar(100) NULL,
+	specifications text NULL,
+	price numeric(12, 2) NULL,
+	CONSTRAINT "ModelLines_pkey" PRIMARY KEY (modelid)
+);
+
+
+-- public."Shipments" определение
+
+-- Drop table
+
+-- DROP TABLE public."Shipments";
+
+CREATE TABLE public."Shipments" (
+	shipmentid serial4 NOT NULL,
+	modelid int4 NULL,
+	dealerid int4 NULL,
+	quantity int4 NULL,
+	"date" date NULL,
+	CONSTRAINT "Shipments_pkey" PRIMARY KEY (shipmentid),
+	CONSTRAINT "Shipments_dealerid_fkey" FOREIGN KEY (dealerid) REFERENCES public."Dealers"(dealerid) ON DELETE CASCADE,
+	CONSTRAINT "Shipments_modelid_fkey" FOREIGN KEY (modelid) REFERENCES public."ModelLines"(modelid) ON DELETE CASCADE
+);
+INSERT INTO public."Dealers" ("name",region,phone,contactperson) VALUES
+	 ('Moto-Mir','Moscow','+7 (495) 123-45-67','Ivan Ivanov'),
+	 ('Bike Center','Saint Petersburg','+7 (812) 234-56-78','Petr Petrov'),
+	 ('Sibir Moto','Novosibirsk','+7 (383) 345-67-89','Alexey Sidorov'),
+	 ('Uralbike','Ekaterinburg','+7 (343) 456-78-90','Dmitry Kuznetsov'),
+	 ('Yug Moto','Krasnodar','+7 (861) 567-89-01','Mikhail Mikhailov'),
+	 ('DV-Moto','Vladivostok','+7 (423) 678-90-12','Sergey Sokolov'),
+	 ('Kazan Bike','Kazan','+7 (843) 789-01-23','Nikolay Nikolaev'),
+	 ('Moto-Mir','Moscow','+7 (495) 123-45-67','Ivan Ivanov'),
+	 ('Bike Center','Saint Petersburg','+7 (812) 234-56-78','Petr Petrov'),
+	 ('Sibir Moto','Novosibirsk','+7 (383) 345-67-89','Alexey Sidorov');
+INSERT INTO public."ModelLines" ("name","type",specifications,price) VALUES
+	 ('Shadow RS','Sport Touring','V-twin 1200cc, 105 hp, ABS, 6-speed',1850000.00),
+	 ('Crusier X9','Cruiser','V-twin 1800cc, 85 hp, air cooling, leather bags',2100000.00),
+	 ('Enduro Pro','Enduro','Single 450cc, 55 hp, electric start, off-road suspension',890000.00),
+	 ('City Sprint','Scooter','250cc, 22 hp, CVT, helmet compartment, 3L/100km',450000.00),
+	 ('Naked Beast','Naked','800cc, 110 hp, minimalist design',1250000.00),
+	 ('Adventure X','Adventure','1000cc, 95 hp, 25L long-range tank',1680000.00),
+	 ('Sport R','Sportbike','600cc, 120 hp, fairing, low seat',1450000.00),
+	 ('Shadow RS','Sport Touring','V-twin 1200cc, 105 hp, ABS, 6-speed',1850000.00),
+	 ('Crusier X9','Cruiser','V-twin 1800cc, 85 hp, air cooling, leather bags',2100000.00),
+	 ('Enduro Pro','Enduro','Single 450cc, 55 hp, electric start, off-road suspension',890000.00);
+INSERT INTO public."Shipments" (modelid,dealerid,quantity,"date") VALUES
+	 (1,1,5,'2025-01-15'),
+	 (2,1,3,'2025-01-15'),
+	 (3,2,7,'2025-01-20'),
+	 (5,3,4,'2025-01-25'),
+	 (6,4,2,'2025-01-28'),
+	 (1,5,6,'2025-02-01'),
+	 (7,1,4,'2025-02-05'),
+	 (4,7,10,'2025-02-10'),
+	 (2,6,2,'2025-02-12'),
+	 (3,3,5,'2025-02-15');
