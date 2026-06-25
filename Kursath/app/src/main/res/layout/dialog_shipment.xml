@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <AutoCompleteTextView
+        android:id="@+id/etModelId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Выберите модель"
+        android:inputType="text"
+        android:layout_marginBottom="8dp"/>
+
+    <AutoCompleteTextView
+        android:id="@+id/etDealerId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Выберите дилера"
+        android:inputType="text"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/etQuantity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Количество"
+        android:inputType="number"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/etDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Дата (ГГГГ-ММ-ДД)"
+        android:inputType="date"/>
+
+</LinearLayout>

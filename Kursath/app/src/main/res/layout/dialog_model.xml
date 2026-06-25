@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Название модели"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:inputType="textCapWords"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/etType"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Тип (Sport, Cruiser...)"
+        android:inputType="textCapWords"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/etSpecs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Характеристики"
+        android:inputType="textMultiLine"
+        android:layout_marginBottom="8dp"/>
+
+    <EditText
+        android:id="@+id/etPrice"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Цена"
+        android:inputType="numberDecimal"/>
+
+</LinearLayout>
